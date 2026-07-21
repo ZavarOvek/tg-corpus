@@ -1,0 +1,38 @@
+# Changelog
+
+All notable changes to this project are documented here.
+Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
+
+## [0.2.0] — 2026-07-21
+
+### Added
+- `--strip-signature` flag for `tg-corpus clean`: auto-detects a repeated
+  channel sign-off line (e.g. a "Subscribe" call-to-action appended to every
+  post) and removes it before the word-count filter and deduplication run.
+  Detection is per-channel and data-driven — nothing to configure by hand,
+  and channels without a repeated sign-off are left untouched.
+- `detect_signature()` / `strip_signature()` exposed as public library
+  functions in `tgcorpus.clean`.
+- CLI now reports what it detected: `detected sign-off, stripped: '...'` or
+  `no repeated sign-off detected`.
+
+### Notes
+- Prompted by testing `fetch` + `clean` on a live channel, where a repeated
+  author sign-off was inflating word frequencies in the output corpus.
+- Detection matches an exact trailing line; a sign-off with varying wording
+  between posts won't be caught (documented as a known limitation).
+
+## [0.1.0] — 2026-07-19
+
+### Added
+- Initial release: two-stage pipeline, `fetch` (Telethon, network) and
+  `clean` (pure functions, offline).
+- Cleaning: emoji/pictograph stripping, URL and @mention removal
+  (configurable), zero-width character removal, whitespace normalization.
+- Filtering: empty messages, forwards (optional), minimum word count.
+- Deduplication: case- and punctuation-insensitive, keeps first occurrence.
+- Export to JSONL (full metadata), CSV, and plain text (one message per
+  line).
+- `.env` support via `python-dotenv` for `TG_API_ID` / `TG_API_HASH`.
+- Test suite covering the full `clean` pipeline offline (no credentials
+  needed).

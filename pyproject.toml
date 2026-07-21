@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tgcorpus"
+version = "0.2.0"
+description = "Turn a public Telegram channel into a clean, deduplicated text corpus"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Yurii Karpenko" }]
+dependencies = ["telethon", "python-dotenv"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+tg-corpus = "tgcorpus.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
