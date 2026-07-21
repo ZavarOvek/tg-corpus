@@ -31,7 +31,7 @@ Two strictly separated stages:
 - Chronological ordering restored from Telegram's newest-first API order
 - Export to JSONL (full metadata), CSV (Excel-friendly) and plain text —
   one message per line, ready to pipe into downstream tools such as
-  [ua-freq-dict](../ua-freq-dict)
+  [ua-freq-dict](https://github.com/ZavarOvek/ua-freq-dict)
 - Transparent drop statistics: `total: 5  kept: 3  dropped: too_short=1, duplicate=1`
 
 ## Install
