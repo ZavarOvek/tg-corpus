@@ -82,6 +82,8 @@ Try it without credentials on the bundled sample:
 tg-corpus clean examples/raw_sample.jsonl -o /tmp/demo --strip-signature
 ```
 
+![tg-corpus clean output](docs/screenshot.png)
+
 ## As a library
 
 ```python

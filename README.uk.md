@@ -87,6 +87,8 @@ written: corpus/corpus.txt
 tg-corpus clean examples/raw_sample.jsonl -o /tmp/demo --strip-signature
 ```
 
+![Вивід tg-corpus clean](docs/screenshot.png)
+
 ## Як бібліотека
 
 ```python
