@@ -32,7 +32,7 @@ Two strictly separated stages:
 - Export to JSONL (full metadata), CSV (Excel-friendly) and plain text —
   one message per line, ready to pipe into downstream tools such as
   [ua-freq-dict](https://github.com/ZavarOvek/ua-freq-dict)
-- Transparent drop statistics: `total: 5  kept: 3  dropped: too_short=1, duplicate=1`
+- Transparent drop statistics: `total: 8  kept: 5  dropped: no_text=1, too_short=1, duplicate=1`
 
 ## Install
 
@@ -79,7 +79,7 @@ written: corpus/corpus.txt
 Try it without credentials on the bundled sample:
 
 ```bash
-tg-corpus clean examples/raw_sample.jsonl -o /tmp/demo
+tg-corpus clean examples/raw_sample.jsonl -o /tmp/demo --strip-signature
 ```
 
 ## As a library

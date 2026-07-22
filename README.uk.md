@@ -37,7 +37,7 @@
 - Експорт у JSONL (повні метадані), CSV (сумісний з Excel) та звичайний
   текст — по одному повідомленню на рядок, готовий одразу подавати в
   інші інструменти на кшталт [ua-freq-dict](https://github.com/ZavarOvek/ua-freq-dict)
-- Прозора статистика відсіву: `total: 5  kept: 3  dropped: too_short=1, duplicate=1`
+- Прозора статистика відсіву: `total: 8  kept: 5  dropped: no_text=1, too_short=1, duplicate=1`
 
 ## Встановлення
 
@@ -84,7 +84,7 @@ written: corpus/corpus.txt
 Спробуй без ключів на прикладеному зразку:
 
 ```bash
-tg-corpus clean examples/raw_sample.jsonl -o /tmp/demo
+tg-corpus clean examples/raw_sample.jsonl -o /tmp/demo --strip-signature
 ```
 
 ## Як бібліотека
