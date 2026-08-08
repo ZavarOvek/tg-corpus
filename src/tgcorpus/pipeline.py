@@ -6,8 +6,8 @@ fields: ``views``, ``forwards``, ``is_forward``, ``reply_to``.
 from __future__ import annotations
 
 from collections import Counter
+from collections.abc import Iterable
 from dataclasses import dataclass, field
-from typing import Iterable
 
 from .clean import (
     clean_text,

@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import csv
 import json
+from collections.abc import Iterable, Iterator
 from pathlib import Path
-from typing import Iterable, Iterator
 
 FIELDS = ["id", "date", "text", "n_words", "views", "forwards", "is_forward"]
 

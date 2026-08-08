@@ -1,5 +1,10 @@
 **English** | [Українська](README.uk.md)
 
+[![CI](https://github.com/ZavarOvek/tg-corpus/actions/workflows/ci.yml/badge.svg)](https://github.com/ZavarOvek/tg-corpus/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 # tg-corpus — Telegram Channel → Clean Text Corpus
 
 A command-line tool that turns a public Telegram channel into a clean,
@@ -111,8 +116,9 @@ The entire cleaning pipeline is covered by offline tests on synthetic data —
 no network or credentials needed:
 
 ```bash
-pip install -e .[dev]
+pip install -e '.[dev]'
 pytest
+ruff check .
 ```
 
 ## License

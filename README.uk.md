@@ -1,5 +1,10 @@
 [English](README.md) | **Українська**
 
+[![CI](https://github.com/ZavarOvek/tg-corpus/actions/workflows/ci.yml/badge.svg)](https://github.com/ZavarOvek/tg-corpus/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 # tg-corpus — Telegram-канал → чистий текстовий корпус
 
 Інструмент командного рядка, що перетворює публічний Telegram-канал на
@@ -116,8 +121,9 @@ texts = [r["text"] for r in result.records]
 мережа й ключі не потрібні:
 
 ```bash
-pip install -e .[dev]
+pip install -e '.[dev]'
 pytest
+ruff check .
 ```
 
 ## Ліцензія

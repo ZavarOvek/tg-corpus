@@ -11,7 +11,7 @@ then stores a local ``.session`` file. Never commit ``*.session`` files.
 from __future__ import annotations
 
 import os
-from typing import AsyncIterator
+from collections.abc import AsyncIterator
 
 
 class CredentialsError(RuntimeError):

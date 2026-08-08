@@ -89,7 +89,10 @@ class TestSignature:
 class TestPipelineSignature:
     def test_strip_channel_signature_end_to_end(self):
         raw = [
-            make_raw(id=i, text=f"Повідомлення номер {i} з достатньою довжиною.\nІлля Кива. Підписатися.")
+            make_raw(
+                id=i,
+                text=f"Повідомлення номер {i} з достатньою довжиною.\nІлля Кива. Підписатися.",
+            )
             for i in range(1, 5)
         ]
         result = run_pipeline(raw, strip_channel_signature=True)
@@ -98,7 +101,10 @@ class TestPipelineSignature:
 
     def test_disabled_by_default(self):
         raw = [
-            make_raw(id=i, text=f"Повідомлення номер {i} з достатньою довжиною.\nІлля Кива. Підписатися.")
+            make_raw(
+                id=i,
+                text=f"Повідомлення номер {i} з достатньою довжиною.\nІлля Кива. Підписатися.",
+            )
             for i in range(1, 5)
         ]
         result = run_pipeline(raw)
