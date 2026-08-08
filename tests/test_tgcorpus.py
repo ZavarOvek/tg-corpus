@@ -182,6 +182,15 @@ class TestIo:
 
 
 class TestCredentials:
+    @pytest.fixture(autouse=True)
+    def _no_dotenv(self, monkeypatch):
+        """Keep these tests hermetic: a real .env in the project must not leak in.
+
+        The README tells users to create one, so it is expected to exist on a
+        developer machine — it just must not decide the outcome of a test.
+        """
+        monkeypatch.setattr("tgcorpus.fetch._load_dotenv", lambda: None)
+
     def test_missing_credentials_raise(self, monkeypatch):
         monkeypatch.delenv("TG_API_ID", raising=False)
         monkeypatch.delenv("TG_API_HASH", raising=False)
