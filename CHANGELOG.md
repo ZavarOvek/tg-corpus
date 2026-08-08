@@ -3,7 +3,7 @@
 All notable changes to this project are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
-## [Unreleased]
+## [0.2.1] - 2026-08-08
 
 ### Added
 - GitHub Actions CI: `ruff` lint job and a `pytest` matrix on Python 3.10-3.12.
@@ -17,6 +17,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 - `license` migrated to the PEP 639 SPDX form (`license = "MIT"` +
   `license-files`); build now requires `setuptools>=77`.
 - Import order normalized by ruff; no behaviour changes.
+- `TestCredentials` no longer depends on the absence of a local `.env`
+  file; both tests are now hermetic.
 
 ## [0.2.0] — 2026-07-21
 
