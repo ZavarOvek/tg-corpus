@@ -2,6 +2,7 @@
 
 Pure functions only — no network, fully testable.
 """
+
 from __future__ import annotations
 
 import re
@@ -12,10 +13,10 @@ _HASHTAG = re.compile(r"#\w+")
 # Emoji and pictographs (main Unicode blocks) + variation selectors
 _EMOJI = re.compile(
     "["
-    "\U0001F000-\U0001FAFF"   # emoji, symbols, pictographs
-    "\U00002600-\U000027BF"   # misc symbols, dingbats
-    "\U0001F1E6-\U0001F1FF"   # regional indicators (flags)
-    "\uFE0E\uFE0F\u200D"      # variation selectors, ZWJ
+    "\U0001f000-\U0001faff"  # emoji, symbols, pictographs
+    "\U00002600-\U000027bf"  # misc symbols, dingbats
+    "\U0001f1e6-\U0001f1ff"  # regional indicators (flags)
+    "\ufe0e\ufe0f\u200d"  # variation selectors, ZWJ
     "]+"
 )
 _ZERO_WIDTH = re.compile(r"[\u200B\u200C\u2060\uFEFF]")

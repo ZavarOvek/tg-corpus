@@ -8,6 +8,7 @@ variables ``TG_API_ID`` and ``TG_API_HASH`` (get them at https://my.telegram.org
 On first run Telethon interactively asks for your phone number and login code,
 then stores a local ``.session`` file. Never commit ``*.session`` files.
 """
+
 from __future__ import annotations
 
 import os
@@ -31,9 +32,7 @@ def _load_dotenv() -> None:
     load_dotenv()
 
 
-def get_credentials(
-    api_id: int | None = None, api_hash: str | None = None
-) -> tuple[int, str]:
+def get_credentials(api_id: int | None = None, api_hash: str | None = None) -> tuple[int, str]:
     _load_dotenv()
     api_id = api_id or int(os.environ.get("TG_API_ID", 0) or 0)
     api_hash = api_hash or os.environ.get("TG_API_HASH", "")
@@ -58,9 +57,7 @@ async def fetch_messages(
     try:
         from telethon import TelegramClient
     except ImportError as exc:  # pragma: no cover
-        raise RuntimeError(
-            "telethon is not installed; run: pip install telethon"
-        ) from exc
+        raise RuntimeError("telethon is not installed; run: pip install telethon") from exc
 
     client = TelegramClient(session, api_id, api_hash)
     async with client:

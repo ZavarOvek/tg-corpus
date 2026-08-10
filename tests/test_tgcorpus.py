@@ -1,4 +1,5 @@
 """Tests for tgcorpus — all offline, on synthetic records."""
+
 import json
 from pathlib import Path
 
@@ -25,9 +26,7 @@ class TestCleanText:
         assert "http" not in clean_text("дивись https://example.com тут")
 
     def test_keep_urls_flag(self):
-        assert "https://example.com" in clean_text(
-            "дивись https://example.com", keep_urls=True
-        )
+        assert "https://example.com" in clean_text("дивись https://example.com", keep_urls=True)
 
     def test_strips_mentions_keeps_hashtags(self):
         out = clean_text("пише @someuser про #мову")
@@ -141,9 +140,7 @@ class TestPipeline:
         assert result.stats["too_short"] == 1
 
     def test_drops_forwards_when_asked(self):
-        result = run_pipeline(
-            [make_raw(is_forward=True)], drop_forwards=True
-        )
+        result = run_pipeline([make_raw(is_forward=True)], drop_forwards=True)
         assert result.stats["forward"] == 1
 
     def test_keeps_forwards_by_default(self):
@@ -207,8 +204,9 @@ class TestCliClean:
     def test_end_to_end(self, tmp_path: Path):
         raw = [
             make_raw(id=3, date="2026-07-03T10:00:00+00:00"),
-            make_raw(id=1, date="2026-07-01T10:00:00+00:00",
-                     text="Перше повідомлення каналу про мову"),
+            make_raw(
+                id=1, date="2026-07-01T10:00:00+00:00", text="Перше повідомлення каналу про мову"
+            ),
             make_raw(id=2, date="2026-07-02T10:00:00+00:00", text="коротко"),
         ]
         src = tmp_path / "raw.jsonl"

@@ -3,6 +3,7 @@
 ``tg-corpus fetch @channel -o raw.jsonl``   — download raw messages (network)
 ``tg-corpus clean raw.jsonl -o out/``       — build a clean corpus (offline)
 """
+
 from __future__ import annotations
 
 import argparse
@@ -28,29 +29,38 @@ def build_parser() -> argparse.ArgumentParser:
     f = sub.add_parser("fetch", help="download raw messages to JSONL")
     f.add_argument("channel", help="channel username or t.me link")
     f.add_argument("-o", "--out", type=Path, default=Path("raw.jsonl"))
-    f.add_argument("--limit", type=int, default=None,
-                   help="max messages to fetch (default: all)")
+    f.add_argument("--limit", type=int, default=None, help="max messages to fetch (default: all)")
     f.add_argument("--api-id", type=int, default=None)
     f.add_argument("--api-hash", default=None)
-    f.add_argument("--session", default="tgcorpus",
-                   help="Telethon session name (default: tgcorpus)")
+    f.add_argument(
+        "--session", default="tgcorpus", help="Telethon session name (default: tgcorpus)"
+    )
 
     c = sub.add_parser("clean", help="build a clean corpus from raw JSONL")
     c.add_argument("input", type=Path, help="raw JSONL file from `fetch`")
-    c.add_argument("-o", "--out", type=Path, default=Path("corpus"),
-                   help="output directory (default: ./corpus)")
-    c.add_argument("--min-words", type=int, default=3,
-                   help="drop messages shorter than N words (default: 3)")
-    c.add_argument("--drop-forwards", action="store_true",
-                   help="drop forwarded messages")
+    c.add_argument(
+        "-o",
+        "--out",
+        type=Path,
+        default=Path("corpus"),
+        help="output directory (default: ./corpus)",
+    )
+    c.add_argument(
+        "--min-words", type=int, default=3, help="drop messages shorter than N words (default: 3)"
+    )
+    c.add_argument("--drop-forwards", action="store_true", help="drop forwarded messages")
     c.add_argument("--keep-urls", action="store_true")
     c.add_argument("--keep-mentions", action="store_true")
     c.add_argument("--drop-hashtags", action="store_true")
-    c.add_argument("--strip-signature", action="store_true",
-                   help="auto-detect and remove a repeated channel sign-off "
-                        "line (e.g. a 'Subscribe' CTA) before filtering/dedup")
-    c.add_argument("--formats", nargs="+", default=["jsonl", "csv", "txt"],
-                   choices=["jsonl", "csv", "txt"])
+    c.add_argument(
+        "--strip-signature",
+        action="store_true",
+        help="auto-detect and remove a repeated channel sign-off "
+        "line (e.g. a 'Subscribe' CTA) before filtering/dedup",
+    )
+    c.add_argument(
+        "--formats", nargs="+", default=["jsonl", "csv", "txt"], choices=["jsonl", "csv", "txt"]
+    )
     return p
 
 

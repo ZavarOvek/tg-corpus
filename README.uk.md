@@ -101,7 +101,7 @@ from tgcorpus import run_pipeline
 from tgcorpus.io import read_jsonl
 
 result = run_pipeline(read_jsonl("raw.jsonl"), min_words=3, drop_forwards=True)
-print(result.stats)          # Counter із причинами відсіву
+print(result.stats)  # Counter із причинами відсіву
 texts = [r["text"] for r in result.records]
 ```
 

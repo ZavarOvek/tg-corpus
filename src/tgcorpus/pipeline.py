@@ -3,6 +3,7 @@
 A raw record is a dict with at least ``id``, ``date``, ``text``; optional
 fields: ``views``, ``forwards``, ``is_forward``, ``reply_to``.
 """
+
 from __future__ import annotations
 
 from collections import Counter
@@ -71,10 +72,7 @@ def run_pipeline(
     if strip_channel_signature and stage1:
         signature = detect_signature([cleaned for _, cleaned in stage1])
         if signature:
-            stage1 = [
-                (raw, strip_signature(cleaned, signature))
-                for raw, cleaned in stage1
-            ]
+            stage1 = [(raw, strip_signature(cleaned, signature)) for raw, cleaned in stage1]
 
     seen: set[str] = set()
     kept: list[dict] = []
