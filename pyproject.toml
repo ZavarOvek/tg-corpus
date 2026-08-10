@@ -47,6 +47,13 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "RUF"]
-# RUF001-003 flag Cyrillic letters as "ambiguous" look-alikes of Latin ones.
-# This project is about Ukrainian text, so those are false positives by design.
-ignore = ["RUF001", "RUF002", "RUF003"]
+ignore = [
+    # RUF001-003 flag Cyrillic letters as "ambiguous" look-alikes of Latin ones.
+    # This project is about Ukrainian text, so those are false positives by design.
+    "RUF001",
+    "RUF002",
+    "RUF003",
+    # E501 is left to `ruff format`; two tools arguing over line length is worse
+    # than one, and the formatter cannot split string literals anyway.
+    "E501",
+]

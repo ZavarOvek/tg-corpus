@@ -3,6 +3,15 @@
 All notable changes to this project are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased]
+
+### Changed
+- Adopted `ruff format` as the project formatter; the whole tree was
+  reformatted in a single dedicated commit (see `.git-blame-ignore-revs`).
+- `E501` disabled in `ruff check`: line length is the formatter's job, and
+  the formatter cannot split string literals anyway.
+- CI lint job now also runs `ruff format --check .`.
+
 ## [0.2.1] - 2026-08-08
 
 ### Added
