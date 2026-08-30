@@ -43,10 +43,10 @@ where = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
-select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "RUF"]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "RUF", "BLE", "SLF"]
 ignore = [
     # RUF001-003 flag Cyrillic letters as "ambiguous" look-alikes of Latin ones.
     # This project is about Ukrainian text, so those are false positives by design.
@@ -57,3 +57,6 @@ ignore = [
     # than one, and the formatter cannot split string literals anyway.
     "E501",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["SLF001"]
