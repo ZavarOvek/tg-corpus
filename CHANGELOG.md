@@ -5,7 +5,18 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+- `clean_text` no longer treats the domain of an email address as an
+  @mention: `news@ukr.net` used to come out as `news.net`.
+- Keycap emoji (`1️⃣`) are removed whole; the combining keycap U+20E3 used to
+  survive as a stray `⃣`.
+- A line starting with `)`, `»`, `,` and similar is no longer glued to the
+  line above it when the space before punctuation is removed.
+
 ### Changed
+- `fetch.py` docstrings now match the packaging: `telethon` and
+  `python-dotenv` are required dependencies (Telethon is still imported
+  lazily); the dead `ImportError` fallback for python-dotenv is gone.
 - Adopted `ruff format` as the project formatter; the whole tree was
   reformatted in a single dedicated commit (see `.git-blame-ignore-revs`).
 - `E501` disabled in `ruff check`: line length is the formatter's job, and

@@ -1,7 +1,8 @@
 """Fetching raw messages from a Telegram channel via Telethon.
 
-This is the only module that touches the network. Telethon is imported
-lazily so the rest of the package (the ``clean`` pipeline) works without it.
+This is the only module that touches the network. Telethon is a declared
+dependency, but it is imported lazily, inside ``fetch_messages``, so importing
+the package or running the offline ``clean`` pipeline never loads it.
 
 Credentials: pass ``api_id``/``api_hash`` explicitly or set the environment
 variables ``TG_API_ID`` and ``TG_API_HASH`` (get them at https://my.telegram.org).
@@ -14,6 +15,8 @@ from __future__ import annotations
 import os
 from collections.abc import AsyncIterator
 
+from dotenv import load_dotenv
+
 
 class CredentialsError(RuntimeError):
     pass
@@ -22,13 +25,8 @@ class CredentialsError(RuntimeError):
 def _load_dotenv() -> None:
     """Load a .env file from the current directory, if present.
 
-    Optional: falls back silently if python-dotenv isn't installed, or if
-    there's no .env file — real environment variables still work either way.
+    A missing .env is fine: real environment variables work either way.
     """
-    try:
-        from dotenv import load_dotenv
-    except ImportError:
-        return
     load_dotenv()
 
 

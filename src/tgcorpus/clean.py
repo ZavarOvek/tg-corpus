@@ -8,7 +8,9 @@ from __future__ import annotations
 import re
 
 _URL = re.compile(r"https?://\S+|t\.me/\S+|www\.\S+", re.IGNORECASE)
-_MENTION = re.compile(r"@\w{3,}")
+# Not preceded by a word char or a dot, so the "@ukr.net" in "news@ukr.net" is
+# left alone instead of being cut down to "news.net".
+_MENTION = re.compile(r"(?<![\w.])@\w{3,}")
 _HASHTAG = re.compile(r"#\w+")
 # Emoji and pictographs (main Unicode blocks) + variation selectors
 _EMOJI = re.compile(
@@ -17,6 +19,7 @@ _EMOJI = re.compile(
     "\U00002600-\U000027bf"  # misc symbols, dingbats
     "\U0001f1e6-\U0001f1ff"  # regional indicators (flags)
     "\ufe0e\ufe0f\u200d"  # variation selectors, ZWJ
+    "\u20e3"  # combining enclosing keycap (the box in 1️⃣)
     "]+"
 )
 _ZERO_WIDTH = re.compile(r"[\u200B\u200C\u2060\uFEFF]")
@@ -41,7 +44,8 @@ def clean_text(
     if not keep_hashtags:
         text = _HASHTAG.sub(" ", text)
     text = _WS.sub(" ", text)
-    text = re.sub(r"\s+([,.:;!?»)\]])", r"\1", text)
+    # Spaces only: with \s+ a line starting with ")" was glued to the line above.
+    text = re.sub(r"[ \t]+([,.:;!?»)\]])", r"\1", text)
     text = _MULTI_NL.sub("\n", text)
     return "\n".join(line.strip() for line in text.split("\n")).strip()
 

@@ -39,6 +39,20 @@ class TestCleanText:
     def test_whitespace_collapsed(self):
         assert clean_text("а   б\n\n\nв") == "а б\nв"
 
+    def test_email_not_treated_as_mention(self):
+        out = clean_text("пишіть на news@ukr.net або @channel_bot")
+        assert "news@ukr.net" in out
+        assert "@channel_bot" not in out
+
+    def test_keycap_emoji_removed_whole(self):
+        assert clean_text("Натисни 1\ufe0f\u20e3 або 2\ufe0f\u20e3") == "Натисни 1 або 2"
+
+    def test_leading_bracket_keeps_its_line(self):
+        assert clean_text("Перший рядок\n) другий рядок") == "Перший рядок\n) другий рядок"
+
+    def test_space_before_punctuation_still_removed(self):
+        assert clean_text("Привіт , світе !") == "Привіт, світе!"
+
 
 class TestDedupNormalize:
     def test_case_and_punct_insensitive(self):
