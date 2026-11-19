@@ -6,6 +6,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## [Unreleased]
 
 ### Fixed
+- `io.read_jsonl` now accepts a plain `str` path, as the README's library
+  example uses (it used to raise `AttributeError`).
 - `clean_text` no longer treats the domain of an email address as an
   @mention: `news@ukr.net` used to come out as `news.net`.
 - Keycap emoji (`1️⃣`) are removed whole; the combining keycap U+20E3 used to

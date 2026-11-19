@@ -10,7 +10,8 @@ from pathlib import Path
 FIELDS = ["id", "date", "text", "n_words", "views", "forwards", "is_forward"]
 
 
-def read_jsonl(path: Path) -> Iterator[dict]:
+def read_jsonl(path: str | Path) -> Iterator[dict]:
+    path = Path(path)
     with path.open(encoding="utf-8") as handle:
         for line_no, line in enumerate(handle, start=1):
             line = line.strip()
