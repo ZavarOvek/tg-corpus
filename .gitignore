@@ -7,3 +7,8 @@ __pycache__/
 raw.jsonl
 corpus/
 .idea/
+.venv/
+venv/
+.ruff_cache/
+build/
+dist/
