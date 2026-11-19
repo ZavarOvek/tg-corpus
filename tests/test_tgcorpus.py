@@ -179,6 +179,12 @@ class TestIo:
         path = io.write_jsonl(records, tmp_path / "x.jsonl")
         assert list(io.read_jsonl(path)) == records
 
+    def test_read_jsonl_accepts_str_path(self, tmp_path: Path):
+        # README's library example passes a plain string.
+        records = [make_raw()]
+        path = io.write_jsonl(records, tmp_path / "x.jsonl")
+        assert list(io.read_jsonl(str(path))) == records
+
     def test_invalid_jsonl_raises(self, tmp_path: Path):
         path = tmp_path / "bad.jsonl"
         path.write_text("{oops", encoding="utf-8")
